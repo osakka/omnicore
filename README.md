@@ -158,5 +158,3 @@ Join us in building the future of efficient AI communication\! Contribute, test,
 -----
 
 **OmniCore: Don't just talk to your AI. Communicate.**
-
-````
