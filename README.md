@@ -1,4 +1,3 @@
-````markdown
 # ✨ OmniCore: Speak Fluent AI. Save Your Tokens. ✨
 
 > **Tired of LLMs with the memory of a goldfish? Frustrated by sky-high token costs just to maintain context? OmniCore is here.** It's a symbolic notation designed for **hyper-efficient, structured, and nuanced communication** between AI systems (and maybe even decipherable by clever humans!).
@@ -41,20 +40,16 @@ Imagine an agent monitoring a complex project discussion. Instead of storing pag
 @DevTeam!request(resource)[GPU_cluster]^4; // Request: Need GPU cluster
 @TeamLead!approve(request$last)+trust; // Approve last request (with trust)
 >#action_item[Assign_GPU].f; // Result: Action item for future assignment
-````
 
+```
 Later, an LLM needing context gets *this* log. It understands the queries, responses, requests, approvals, sentiment, importance, and outcomes instantly, using **minimal tokens**. That's the OmniCore advantage\! 🗝️
 
 -----
 
-## pocket reference The Pocket Guide & Bot Command Center
+## The Pocket Guide & Bot Command Center
 
 Need the essentials fast? Want to tell your LLM how to speak OmniCore? This is your **cheat sheet** and **AI instruction manual** rolled into one.
 
-\<details\>
-\<summary\>\<strong\>➡️ Click Here to Expand/Collapse the OmniCore Pocket Guide ⬅️\</strong\>\</summary\>
-
-```text
 ### OmniCore v1.0 Condensed Reference & Bot Instructions ###
 
 # Core Syntax:
@@ -85,11 +80,7 @@ Need the essentials fast? Want to tell your LLM how to speak OmniCore? This is y
 
 ### --- Instructions for Humans --- ###
 # Copy the text above and include it in your LLM's system prompt or request header when providing OmniCore data. This ensures the LLM understands the compact format.
-```
-
 **(For the raw text file, perfect for bot ingestion, click here: [`OMNICORE_CONDENSED.txt`](https://github.com/osakka/ominicore/docs/OMNICORE_CONDENSED.txt))**
-
-\</details\>
 
 -----
 
