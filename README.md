@@ -80,8 +80,8 @@ Need the essentials fast? Want to tell your LLM how to speak OmniCore? This is y
 
 ### --- Instructions for Humans --- ###
 # Copy the text above and include it in your LLM's system prompt or request header when providing OmniCore data. This ensures the LLM understands the compact format.
-**(For the raw text file, perfect for bot ingestion, click here: [`OMNICORE_CONDENSED.txt`](https://github.com/osakka/ominicore/docs/OMNICORE_CONDENSED.txt))**
 ```
+(For the raw text file, perfect for bot ingestion, click here: [`OMNICORE_CONDENSED.txt`](https://github.com/osakka/ominicore/docs/OMNICORE_CONDENSED.txt))
 -----
 
 ## 📚 Dive Deeper: Understand the Core
@@ -97,7 +97,7 @@ Ready to go beyond the cheat sheet? Explore the full documentation:
 
 See how OmniCore handles real(-ish) scenarios\!
 
-**From Our Development Journey:** *(The Birth of Cool)*
+** Our Development Journey:** 
 
 ```omnicore
 #OmniCore<:>GenesisLog.p; // Logging the start...
