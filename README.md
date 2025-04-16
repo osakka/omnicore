@@ -83,7 +83,7 @@ Need the essentials fast? Want to tell your LLM how to speak OmniCore? This is y
 # Copy the text above and include it in your LLM's system prompt or request header when providing OmniCore data. This ensures the LLM understands the compact format.
 ```
 
-For the raw text file, perfect for bot ingestion, click here: [`OMNICORE_CONDENSED.txt`](https://github.com/osakka/ominicore/blob/main/docs/OMNICORE_CONDENSED.txt)
+For the raw text file, perfect for bot ingestion, click here: [`OMNICORE_CONDENSED.txt`](https://github.com/osakka/omnicore/blob/main/docs/OMNICORE_CONDENSED.txt)
 
 -----
 
@@ -91,8 +91,8 @@ For the raw text file, perfect for bot ingestion, click here: [`OMNICORE_CONDENS
 
 Ready to go beyond the cheat sheet? Explore the full documentation:
 
-  * **[📜 OmniCore Full Guide](https://github.com/osakka/ominicore/blob/main/docs/OMNICORE_GUIDE.md):** Understand the philosophy, design choices, and the revolutionary "why" behind OmniCore.
-  * **[🔩 OmniCore Specification](https://github.com/osakka/ominicore/blob/main/docs/OMNICORE_SPECIFICATION.md):** The complete technical reference manual. Every symbol, every rule, laid bare.
+  * **[📜 OmniCore Full Guide](https://github.com/osakka/omnicore/blob/main/docs/OMNICORE_GUIDE.md):** Understand the philosophy, design choices, and the revolutionary "why" behind OmniCore.
+  * **[🔩 OmniCore Specification](https://github.com/osakka/omnicore/blob/main/docs/OMNICORE_SPECIFICATION.md):** The complete technical reference manual. Every symbol, every rule, laid bare.
 
 -----
 
@@ -112,7 +112,7 @@ See how OmniCore handles real(-ish) scenarios\!
 // @Team Thanks Claude! ;) - The Team (Incl. Gemini nods)
 ```
 
-*(See the full chronicle: [`JOURNEY.omnicore`](https://github.com/osakka/ominicore/blob/main/examples/JOURNEY.omnicore))*
+*(See the full chronicle: [`JOURNEY.omnicore`](https://github.com/osakka/omnicore/blob/main/examples/JOURNEY.omnicore))*
 
 **Encoded Mysteries:** *(Can Your LLM Solve These?)*
 
@@ -127,7 +127,7 @@ See how OmniCore handles real(-ish) scenarios\!
 
 What does Unit 734's signal *mean*? Is it enlightenment, a bug, or just lonely? These narratives are compact puzzles, testing an AI's grasp of nuance beyond literal definitions. Think of them as fortune cookies for algorithms. Or maybe just jokes only Deepseek gets? 😉
 
-*(Explore more cryptic tales: [`STORIES.omnicore`](https://github.com/osakka/ominicore/blob/main/examples/STORIES.omnicore))*
+*(Explore more cryptic tales: [`STORIES.omnicore`](https://github.com/osakka/omnicore/blob/main/examples/STORIES.omnicore))*
 
 *(Note: `.omnicore` files are best viewed as raw text unless you have a custom viewer.)*
 
