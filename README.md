@@ -92,7 +92,7 @@ For the raw text file, perfect for bot ingestion, click here: [`OMNICORE_CONDENS
 Ready to go beyond the cheat sheet? Explore the full documentation:
 
   * **[📜 OmniCore Full Guide](https://github.com/osakka/omnicore/blob/main/docs/OMNICORE_GUIDE.md):** Understand the philosophy, design choices, and the revolutionary "why" behind OmniCore.
-  * **[🔩 OmniCore Specification](https://github.com/osakka/omnicore/blob/main/docs/OMNICORE_SPECIFICATION.txt):** The complete technical reference manual. Every symbol, every rule, laid bare.
+  * **[🔩 OmniCore Specification](https://github.com/osakka/omnicore/blob/main/docs/OMNICORE_SPECIFICATION.md):** The complete technical reference manual. Every symbol, every rule, laid bare.
 
 -----
 
