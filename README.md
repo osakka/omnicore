@@ -49,6 +49,7 @@ Later, an LLM needing context gets *this* log. It understands the queries, respo
 ## The Pocket Guide & Bot Command Center
 
 Need the essentials fast? Want to tell your LLM how to speak OmniCore? This is your **cheat sheet** and **AI instruction manual** rolled into one.
+
 ```text
 ### OmniCore v1.0 Condensed Reference & Bot Instructions ###
 
@@ -81,7 +82,9 @@ Need the essentials fast? Want to tell your LLM how to speak OmniCore? This is y
 ### --- Instructions for Humans --- ###
 # Copy the text above and include it in your LLM's system prompt or request header when providing OmniCore data. This ensures the LLM understands the compact format.
 ```
-(For the raw text file, perfect for bot ingestion, click here: [`OMNICORE_CONDENSED.txt`](https://github.com/osakka/ominicore/blob/main/docs/OMNICORE_CONDENSED.txt))
+
+For the raw text file, perfect for bot ingestion, click here: [`OMNICORE_CONDENSED.txt`](https://github.com/osakka/ominicore/blob/main/docs/OMNICORE_CONDENSED.txt)
+
 -----
 
 ## 📚 Dive Deeper: Understand the Core
