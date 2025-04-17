@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Retro Pong</title>
+    <style>
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* CRT Effect */
+        #crt::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+                        rgba(0, 0, 0, 0.25) 50%),
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06),
+                        rgba(0, 255, 0, 0.02),
+                        rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 4px, 4px 100%;
+            pointer-events: none;
+            animation: scanline 1s linear infinite;
+        }
+
+        @keyframes scanline {
+            from { background-position: 0 0; }
+            to { background-position: 0 8px; }
+        }
+
+        canvas {
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            image-rendering: pixelated;
+        }
+
+        #score {
+            position: absolute;
+            top: 20px;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 32px;
+            text-shadow: 0 0 10px #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="crt">
+        <canvas id="gameCanvas" width="800" height="400"></canvas>
+        <div id="score">0 - 0</div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+
+        // Game state
+        let gameState = {
+            player1: { y: 160, score: 0 },
+            player2: { y: 160, score: 0 },
+            ball: { x: 400, y: 200, dx: 5, dy: 0 },
+            ballSpeed: 5,
+            lastHit: null
+        };
+
+        // Controls
+        const keys = {};
+        document.addEventListener('keydown', e => keys[e.key] = true);
+        document.addEventListener('keyup', e => keys[e.key] = false);
+
+        // Game loop
+        function update() {
+            // Paddle movement
+            if (keys['w']) gameState.player1.y = Math.max(0, gameState.player1.y - 8);
+            if (keys['s']) gameState.player1.y = Math.min(320, gameState.player1.y + 8);
+            if (keys['ArrowUp']) gameState.player2.y = Math.max(0, gameState.player2.y - 8);
+            if (keys['ArrowDown']) gameState.player2.y = Math.min(320, gameState.player2.y + 8);
+
+            // Ball movement
+            gameState.ball.x += gameState.ball.dx;
+            gameState.ball.y += gameState.ball.dy;
+
+            // Wall collision
+            if (gameState.ball.y < 0 || gameState.ball.y > 385) {
+                gameState.ball.dy *= -1;
+            }
+
+            // Paddle collision
+            const paddleCollision = (paddleX, paddleY) => 
+                gameState.ball.x < paddleX + 15 &&
+                gameState.ball.x > paddleX &&
+                gameState.ball.y < paddleY + 80 &&
+                gameState.ball.y > paddleY;
+
+            if (paddleCollision(20, gameState.player1.y) {
+                gameState.ball.dx = Math.abs(gameState.ball.dx);
+                gameState.ball.dy = ((gameState.ball.y - (gameState.player1.y + 40)) / 20;
+                gameState.ballSpeed += 0.2;
+                gameState.lastHit = 'player1';
+            }
+
+            if (paddleCollision(765, gameState.player2.y)) {
+                gameState.ball.dx = -Math.abs(gameState.ball.dx);
+                gameState.ball.dy = ((gameState.ball.y - (gameState.player2.y + 40)) / 20);
+                gameState.ballSpeed += 0.2;
+                gameState.lastHit = 'player2';
+            }
+
+            // Score points
+            if (gameState.ball.x < 0) {
+                gameState.player2.score++;
+                resetBall();
+            }
+            if (gameState.ball.x > 800) {
+                gameState.player1.score++;
+                resetBall();
+            }
+
+            // Update score display
+            scoreElement.textContent = `${gameState.player1.score} - ${gameState.player2.score}`;
+
+            // Check win condition
+            if (gameState.player1.score >= 10 || gameState.player2.score >= 10) {
+                alert(`Game Over! Final Score: ${gameState.player1.score} - ${gameState.player2.score}`);
+                resetGame();
+            }
+
+            // Normalize ball speed
+            const speed = Math.sqrt(gameState.ball.dx**2 + gameState.ball.dy**2);
+            gameState.ball.dx = (gameState.ball.dx / speed) * gameState.ballSpeed;
+            gameState.ball.dy = (gameState.ball.dy / speed) * gameState.ballSpeed;
+        }
+
+        function draw() {
+            // Clear canvas
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, 800, 400);
+
+            // Draw paddles
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(20, gameState.player1.y, 15, 80);
+            ctx.fillRect(765, gameState.player2.y, 15, 80);
+
+            // Draw ball
+            ctx.beginPath();
+            ctx.arc(gameState.ball.x, gameState.ball.y, 7.5, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Draw center line
+            ctx.setLineDash([10, 10]);
+            ctx.beginPath();
+            ctx.moveTo(400, 0);
+            ctx.lineTo(400, 400);
+            ctx.strokeStyle = '#fff';
+            ctx.stroke();
+        }
+
+        function resetBall() {
+            gameState.ball = {
+                x: 400,
+                y: 200,
+                dx: gameState.lastHit === 'player1' ? -5 : 5,
+                dy: 0,
+            };
+            gameState.ballSpeed = 5;
+        }
+
+        function resetGame() {
+            gameState.player1.score = 0;
+            gameState.player2.score = 0;
+            resetBall();
+        }
+
+        // Main game loop
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Start the game
+        gameLoop();
+    </script>
+</body>
+</html>
