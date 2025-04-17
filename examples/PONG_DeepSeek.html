@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Retro Pong</title>
+    <title>OmniCore Pong</title>
     <style>
         body {
             background: #000;
@@ -11,8 +11,10 @@
             height: 100vh;
             margin: 0;
             overflow: hidden;
+            font-family: 'Courier New', monospace;
         }
 
+        /* CRT Effect */
         #crt::after {
             content: "";
             position: absolute;
@@ -42,37 +44,97 @@
             image-rendering: pixelated;
         }
 
-        #score {
+        #hud {
             position: absolute;
             top: 20px;
-            color: #fff;
-            font-family: 'Courier New', monospace;
-            font-size: 32px;
-            text-shadow: 0 0 10px #fff;
+            color: #0f0;
+            font-size: 18px;
+            text-shadow: 0 0 10px #0f0;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        #instructions {
+            position: absolute;
+            bottom: 30px;
+            color: #0f0;
+            font-size: 16px;
+            text-align: center;
+            opacity: 0.7;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 0.3; }
         }
     </style>
 </head>
 <body>
+    <!-- OmniCore Prompt Documentation -->
+    <!-- 
+    #game<:>Pong^5*retro-style @implementation<>HTML+CSS+JavaScript^4 !(create){single-file-app}^5;
+    @usr!cmd(create)>#game{Pong}.style{retro}^5*important;
+    @canvas<>properties[width=800;height=400;border=solid]^3;
+    @visual-style<>aesthetic[monochrome+pixelated+CRT-effect]^4*authentic;
+    @elements<>[
+      @paddle<>properties[height=80;width=15;color=#FFFFFF;speed=8;position=sides]^4,
+      @ball<>properties[size=15;color=#FFFFFF;speed=5;acceleration=0.2]^4,
+      @scoreboard<>properties[font=monospace;size=32px;color=#FFFFFF;position=top]^3,
+      @divider<>properties[style=dashed;width=2px;color=#FFFFFF]^2
+    ]^4;
+    @sounds<>effects[paddle-hit;wall-hit;score-sound;game-over]^3;
+    @controls<>input[player1=W,S;player2=ArrowUp,ArrowDown]^4;
+    @mechanics<>[
+      @collision-detection<>precise^4,
+      @score-tracking<>first-to-10^3,
+      @difficulty<>progressive{ball-speed-increase}^3,
+      @physics<>realistic-bouncing{angle-calculation}^4
+    ]^5;
+    @game-states<>[menu;playing;game-over]^3;
+    @code-requirements<>[
+      @structure<>single-HTML-file{all-in-one}^5,
+      @quality<>clean+commented+maintainable^5,
+      @functionality<>complete+playable+no-placeholders^5,
+      @dependencies<>none{vanilla-JavaScript-only}^4
+    ]^5;
+    !(deliver)>complete-working-code{ready-to-run}^5*critical;
+    -->
+    
     <div id="crt">
         <canvas id="gameCanvas" width="800" height="400"></canvas>
-        <div id="score">0 - 0</div>
+        <div id="hud">
+            PLAYER 1: W/S<br>
+            PLAYER 2: ↑/↓<br>
+            FIRST TO 10 WINS!
+        </div>
+        <div id="instructions">HIT ANY KEY TO START</div>
     </div>
 
     <script>
+        // OmniCore Implementation
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
-        const scoreElement = document.getElementById('score');
+        const hud = document.getElementById('hud');
+        const instructions = document.getElementById('instructions');
 
         let gameState = {
             player1: { y: 160, score: 0 },
             player2: { y: 160, score: 0 },
             ball: { x: 400, y: 200, dx: 5, dy: 0 },
             ballSpeed: 5,
-            lastHit: null
+            lastHit: null,
+            gameActive: false
         };
 
         const keys = {};
-        document.addEventListener('keydown', e => keys[e.key] = true);
+        document.addEventListener('keydown', e => {
+            if (!gameState.gameActive) {
+                gameState.gameActive = true;
+                instructions.style.display = 'none';
+            }
+            keys[e.key] = true;
+        });
         document.addEventListener('keyup', e => keys[e.key] = false);
 
         function paddleCollision(paddleX, paddleY) {
@@ -83,6 +145,8 @@
         }
 
         function update() {
+            if (!gameState.gameActive) return;
+
             // Player controls
             if (keys['w']) gameState.player1.y = Math.max(0, gameState.player1.y - 8);
             if (keys['s']) gameState.player1.y = Math.min(320, gameState.player1.y + 8);
@@ -114,21 +178,15 @@
             }
 
             // Scoring
-            if (gameState.ball.x < 0) {
-                gameState.player2.score++;
+            if (gameState.ball.x < 0 || gameState.ball.x > 800) {
+                gameState[gameState.ball.x < 0 ? 'player2' : 'player1'].score++;
+                hud.innerHTML = `${gameState.player1.score} - ${gameState.player2.score}<br>${hud.innerHTML.split('<br>')[1]}`;
                 resetBall();
             }
-            if (gameState.ball.x > 800) {
-                gameState.player1.score++;
-                resetBall();
-            }
-
-            // Update display
-            scoreElement.textContent = `${gameState.player1.score} - ${gameState.player2.score}`;
 
             // Win condition
-            if (gameState.player1.score >= 10 || gameState.player2.score >= 10) {
-                alert(`Game Over! Final Score: ${gameState.player1.score} - ${gameState.player2.score}`);
+            if (Math.max(gameState.player1.score, gameState.player2.score) >= 10) {
+                alert(`PLAYER ${gameState.player1.score > gameState.player2.score ? '1' : '2'} WINS!`);
                 resetGame();
             }
 
@@ -143,25 +201,17 @@
             ctx.fillRect(0, 0, 800, 400);
 
             // Draw paddles
-            ctx.fillStyle = '#fff';
+            ctx.fillStyle = '#0f0';
             ctx.fillRect(20, gameState.player1.y, 15, 80);
             ctx.fillRect(765, gameState.player2.y, 15, 80);
 
-            // Draw ball with enhanced visibility
+            // Draw neon ball
             ctx.beginPath();
-            ctx.arc(gameState.ball.x, gameState.ball.y, 10, 0, Math.PI * 2); // Increased radius
-            ctx.fillStyle = '#FF0000'; // Bright red color
-            ctx.fill();
-            ctx.shadowColor = '#FF0000'; // Glow effect
+            ctx.arc(gameState.ball.x, gameState.ball.y, 10, 0, Math.PI * 2);
+            ctx.fillStyle = '#0f0';
+            ctx.shadowColor = '#0f0';
             ctx.shadowBlur = 20;
-
-            // Center line
-            ctx.setLineDash([10, 10]);
-            ctx.beginPath();
-            ctx.moveTo(400, 0);
-            ctx.lineTo(400, 400);
-            ctx.strokeStyle = '#fff';
-            ctx.stroke();
+            ctx.fill();
         }
 
         function resetBall() {
@@ -177,8 +227,10 @@
         function resetGame() {
             gameState.player1.score = 0;
             gameState.player2.score = 0;
+            gameState.gameActive = false;
+            instructions.style.display = 'block';
+            hud.innerHTML = `0 - 0<br>PLAYER 1: W/S<br>PLAYER 2: ↑/↓<br>FIRST TO 10 WINS!`;
             resetBall();
-            scoreElement.textContent = '0 - 0';
         }
 
         function gameLoop() {
@@ -187,7 +239,7 @@
             requestAnimationFrame(gameLoop);
         }
 
-        // Start the game
+        // Start the OmniCore-powered game
         gameLoop();
     </script>
 </body>
