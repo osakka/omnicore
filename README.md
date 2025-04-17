@@ -1,5 +1,10 @@
 # OmniCore: The Universal AI Communication Protocol
 
+<div align="center">
+  <img src="resources/omnicore.svg" alt="OmniCore Logo" width="20%">
+  <p><em>Dense. Meaningful. Efficient. Revolutionary.</em></p>
+</div>
+
 > **The symbolic lingua franca that lets AI systems communicate with maximum efficiency and minimal token usage.**
 
 ---
