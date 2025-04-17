@@ -94,7 +94,7 @@
             gameState.ball.y += gameState.ball.dy;
 
             // Wall collision
-            if (gameState.ball.y < 7.5 || gameState.ball.y > 392.5) {
+            if (gameState.ball.y < 10 || gameState.ball.y > 390) {
                 gameState.ball.dy *= -1;
             }
 
@@ -147,10 +147,13 @@
             ctx.fillRect(20, gameState.player1.y, 15, 80);
             ctx.fillRect(765, gameState.player2.y, 15, 80);
 
-            // Draw ball
+            // Draw ball with enhanced visibility
             ctx.beginPath();
-            ctx.arc(gameState.ball.x, gameState.ball.y, 7.5, 0, Math.PI * 2);
+            ctx.arc(gameState.ball.x, gameState.ball.y, 10, 0, Math.PI * 2); // Increased radius
+            ctx.fillStyle = '#FF0000'; // Bright red color
             ctx.fill();
+            ctx.shadowColor = '#FF0000'; // Glow effect
+            ctx.shadowBlur = 20;
 
             // Center line
             ctx.setLineDash([10, 10]);
