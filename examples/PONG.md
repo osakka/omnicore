@@ -1,3 +1,5 @@
+Paste the OmniCore guide, followed by the game!
+
 Omicore Guide
 
 ```omnicore
