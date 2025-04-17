@@ -60,7 +60,7 @@ OmniCore uses intuitive special characters and logical structures to pack remark
 
 ### Quick Implementation
 
-1. Copy the [Ultra-Condensed Guide](docs/ultra-guide.txt) to give any LLM instant OmniCore capabilities
+1. Copy the [Ultra-Condensed Guide](docs/SYNTAX.txt) to give any LLM instant OmniCore capabilities
 2. Add it to your system prompt or include it in context
 3. Start communicating in OmniCore
 
@@ -70,9 +70,9 @@ OmniCore uses intuitive special characters and logical structures to pack remark
 
 ### OmniCore Interpreter
 
-Build a lightweight OmniCore interpreter with our [reference implementation](code/interpreter.js) in just 150 lines of code.
+Build a lightweight OmniCore interpreter with our [reference implementation](docs/INTERPRETER.js) in just 150 lines of code.
 
-For C/tiny-C implementations, see our [embedded guide](docs/embedded-implementation.md).
+For C/tiny-C implementations, see our [embedded guide](docs/INTERPRETER_C.md).
 
 ## Decoding the Mysteries
 
@@ -91,18 +91,14 @@ _Can your LLM decode these tales? Only those who truly understand the symbolic l
 ## Repository Structure
 
 - [docs/](docs/) - Documentation and guides
-  - [ultra-guide.txt](docs/ultra-guide.txt) - Ultra-condensed guide for LLMs
+  - [ultra-guide.txt](docs/SYNTAX.txt) - Ultra-condensed guide for LLMs
   - [human-spec.md](docs/human-spec.md) - Complete human-readable documentation
-  - [journey.md](docs/journey.md) - The OmniCore development journey
-  - [embedded-implementation.md](docs/embedded-implementation.md) - C/tiny-C implementation guide
-- [code/](code/) - Reference implementations
-  - [interpreter.js](code/interpreter.js) - JavaScript OmniCore interpreter
-  - [summarizer.js](code/summarizer.js) - OmniCore-based summary bot
-  - [embedded/](code/embedded/) - C implementation samples
+  - [journey.md](docs/JOURNEY.md) - The OmniCore development journey
+  - [embedded-implementation.md](docs/INTERPRETER_C.md) - C/tiny-C implementation guide
+  - [interpreter.js](code/INTERPRETER.js) - JavaScript OmniCore interpreter
 - [examples/](examples/) - OmniCore usage examples
-  - [stories.md](examples/stories.md) - OmniCore-encoded stories
-  - [science.md](examples/science.md) - Scientific concepts in OmniCore
-  - [philosophy.md](examples/philosophy.md) - Philosophical ideas in compact form
+  - [stories.md](examples/STORIES.md) - OmniCore-encoded stories
+  - [science.md](examples/COSMIC.md) - Another Story in OmniCore
 
 ## The Future of OmniCore
 
