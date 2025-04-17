@@ -20,6 +20,8 @@ OmniCore is a compact symbolic notation system designed for hyper-efficient comm
 
 Think of it as upgrading from sending novels via messenger pigeon to transmitting data via fiber optics.
 
+**OmniCore snippets can be pasted into a capable LLM, without any additional context, and should understand the gist of the discussion in lots of detail. Try taking a copy of a snippet from examples!**
+
 ## 💡 The Problem OmniCore Solves
 
 Current AI communication suffers from extreme inefficiency:
